@@ -1,0 +1,13 @@
+image: alpine/edge
+packages:
+- go
+tasks:
+- test: |
+    set +x
+    REPO=$(ls -1 | head -1)
+    cd "$REPO"
+    echo "Testing ${REPO}"
+
+    go mod tidy
+    go clean -testcache
+    go test ./...
