@@ -16,6 +16,6 @@ func New(name string) Pool {
 	return Pool{
 		Name:      name,
 		ID:        uuid.New(),
-		CreatedAt: time.Now().Truncate(0), // Get rid of monotonic clock
+		CreatedAt: time.Now().Local().UTC(),
 	}
 }
