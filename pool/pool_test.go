@@ -4,7 +4,7 @@ import (
 	"testing"
 
 	"git.sr.ht/~hwrd/photopool/pool"
-	"github.com/google/uuid"
+	"github.com/stretchr/testify/assert"
 )
 
 func TestNew(t *testing.T) {
@@ -15,24 +15,18 @@ func TestNew(t *testing.T) {
 		p := pool.New(want)
 		got := p.Name
 
-		if want != got {
-			t.Errorf("want: %q, got %q", want, got)
-		}
+		assert.Equal(t, want, got)
 	})
 
 	t.Run("SetsID", func(t *testing.T) {
 		p := pool.New("Richard's Graduation")
 
-		if p.ID == uuid.Nil {
-			t.Errorf("ID should be set, but is nil")
-		}
+		assert.NotNil(t, p.ID)
 	})
 
 	t.Run("SetsCreatedAt", func(t *testing.T) {
 		p := pool.New("Joey's Bar Mitzvah")
 
-		if p.CreatedAt.IsZero() {
-			t.Errorf("CreatedAt should be set, but is not")
-		}
+		assert.NotNil(t, p.CreatedAt)
 	})
 }
